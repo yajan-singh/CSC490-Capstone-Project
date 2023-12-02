@@ -1,5 +1,11 @@
 {
     "LPDDAC": {
         "PATH": "./dataset"
+    },
+    "LPD": {
+        "PATH": "./dataset"
+    },
+    "VD": {
+        "PATH": "./dataset"
     }
 }
