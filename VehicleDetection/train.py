@@ -76,14 +76,11 @@ testDataPath = os.path.join(datasetPath, "testData")
 
 flag = True
 
-
-print(datasetPath)
 for dirname, _, filenames in os.walk(os.path.join(datasetPath, "train")):
     for filename in filenames:
         shutil.copy(os.path.join(dirname, filename), os.path.join(trainDataPath, filename))
 for dirname, _, filenames in os.walk(os.path.join(datasetPath, "test")):
     for filename in filenames:
-        print(os.path.join(testDataPath, filename))
         shutil.copy(os.path.join(dirname, filename), os.path.join(testDataPath, filename))
 
 
