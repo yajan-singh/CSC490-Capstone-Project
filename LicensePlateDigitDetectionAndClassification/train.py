@@ -7,7 +7,7 @@ import numpy as np
 import json
 
 flag = True
-config = json.load(open("./config.json", "r"))
+config = json.load(open("./TrainingConfig.json", "r"))
 datasetPath = config["LPDDAC"]["PATH"]
 trainDataPath = os.path.join(datasetPath, "/trainData")
 testDataPath = os.path.join(datasetPath, "/testData")
