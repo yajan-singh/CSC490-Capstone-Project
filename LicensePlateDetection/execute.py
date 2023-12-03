@@ -17,5 +17,3 @@ def handler(img):
     numArr = indices[0].tolist()
     labels = [label[i] for i in numArr]
     return img, boxes, labels
-
-print(handler('/Users/nawal/Documents/CSC490/ExampleDataset/testData/Cars1.png'))
