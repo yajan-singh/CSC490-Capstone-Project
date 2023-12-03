@@ -17,7 +17,7 @@ def handler(img):
     img = utils.read_image(img)
     predictions = model.predict(img)
     label, box, num = predictions
-    thresh = 0.5
+    thresh = 0.50
     indices = np.where(num > thresh)
     boxes = box[indices]
     numArr = indices[0].tolist()

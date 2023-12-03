@@ -5,48 +5,39 @@ from LicensePlateDigitDetectionAndClassification.execute import handler as LPDDA
 from detecto.visualize import show_labeled_image
 from PIL import Image
 
-def crop_image(image_path, crop_dimensions):
-    """
-    Crops an image to multiple bounding boxes and saves each crop as a new file.
-
-    :param image_path: Path to the source image.
-    :param crop_dimensions: List of bounding box coordinates in the format [xmin, ymin, xmax, ymax].
-    """
-    # Load the image
-    with Image.open(image_path) as img:
-        # Iterate over each set of bounding box dimensions in the tensor
-        for i, (xmin, ymin, xmax, ymax) in enumerate(crop_dimensions):
-            # Crop the image
-            cropped_image = img.crop((xmin.item(), ymin.item(), xmax.item(), ymax.item()))
-            # Save the cropped image
-            cropped_image.save("./CroppedImages/cropped_image_{i}.png")
 
 if __name__ == "__main__":
     try:
-        while True:
-            if len(os.listdir('./Images')) == 0:
-                print('waiting for image...')
-                continue
-            img = os.listdir('./Images')[0]
+        for img in os.listdir('./Images'):
             img_path = './Images/' + img
 
             print('processing image: ', img)
             # Call VD_handler to process the image and save path in img variable
-            img, boxes, labels = VD_handler(img_path)
-            
+            img1, boxes1, labels1 = VD_handler(img_path)
             # crop Image according to annotation (boxes)
-            crop_image(img_path, boxes)
-
-            # Call LPD_handler to process the image and save path in img variable
-            for i in range(len(boxes)):
-                img, boxes, labels = LPD_handler("./CroppedImages/cropped_image_{i}.png")
-                crop_image("./CroppedImages/cropped_image_{i}.png", boxes)
+            with Image.open(img_path) as image:
+                # Iterate over each set of bounding box dimensions in the tensor
+                for i, (xmin, ymin, xmax, ymax) in enumerate(boxes1):
+                    # Crop the image
+                    cropped_image = image.crop((xmin.item(), ymin.item(), xmax.item(), ymax.item()))
+                    # Save the cropped image
+                    cropped_image.save(f"./CroppedImages/cropped_image_{i}.png")
             
-                # Call LPDDAC_handler to process the image
-                img, boxes, labels = LPDDAC_handler()
-                # output the resulting image {Have to change this to send the image to the server}
-                print('image processed!')
-                show_labeled_image(img, boxes, labels)
+                    # Call LPD_handler to process the image and save path in img variable
+                    img2, boxes2, labels2 = LPD_handler(f"./CroppedImages/cropped_image_{i}.png")
+
+                    with Image.open(f"./CroppedImages/cropped_image_{i}.png") as image2:           
+                        cropped_image2 = image2.crop((boxes2[0][0].item(), boxes2[0][1].item(), boxes2[0][2].item(), boxes2[0][3].item()))
+                        # Save the cropped image
+                        cropped_image2.save(f"./CroppedImages/cropped_image_{i}.png")
+                        
+                        # Call LPDDAC_handler to process the image
+                        img3, boxes3, labels3 = LPDDAC_handler(f"./CroppedImages/cropped_image_{i}.png") 
+
+                        # output the resulting image {Have to change this to send the image to the server}
+                        print('image processed!')
+                        show_labeled_image(img3, boxes3, labels3)
+       
 
     except KeyboardInterrupt:
         print('\n\n\ninterrupted!\n\n\n')
