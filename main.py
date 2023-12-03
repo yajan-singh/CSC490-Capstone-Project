@@ -19,7 +19,7 @@ def crop_image(image_path, crop_dimensions):
             # Crop the image
             cropped_image = img.crop((xmin.item(), ymin.item(), xmax.item(), ymax.item()))
             # Save the cropped image
-            cropped_image.save("./Images/cropped_image_{i}.png")
+            cropped_image.save("./CroppedImages/cropped_image_{i}.png")
 
 if __name__ == "__main__":
     try:
@@ -38,12 +38,15 @@ if __name__ == "__main__":
             crop_image(img_path, boxes)
 
             # Call LPD_handler to process the image and save path in img variable
-            img, boxes, labels = LPD_handler()
-            # Call LPDDAC_handler to process the image
-            img, boxes, labels = LPDDAC_handler()
-            # output the resulting image {Have to change this to send the image to the server}
-            print('image processed!')
-            show_labeled_image(img, boxes, labels)
+            for i in range(len(boxes)):
+                img, boxes, labels = LPD_handler("./CroppedImages/cropped_image_{i}.png")
+                crop_image("./CroppedImages/cropped_image_{i}.png", boxes)
+            
+                # Call LPDDAC_handler to process the image
+                img, boxes, labels = LPDDAC_handler()
+                # output the resulting image {Have to change this to send the image to the server}
+                print('image processed!')
+                show_labeled_image(img, boxes, labels)
 
     except KeyboardInterrupt:
         print('\n\n\ninterrupted!\n\n\n')
