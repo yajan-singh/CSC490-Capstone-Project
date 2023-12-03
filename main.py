@@ -1,4 +1,5 @@
 import os
+from VehicleDetection.execute import handler as VD_handler
 from LicensePlateDigitDetectionAndClassification.execute import handler as LPDDAC_handler
 from detecto.visualize import show_labeled_image
 
@@ -10,6 +11,7 @@ if __name__ == "__main__":
                 continue
             img = os.listdir('./Images')[0]
             print('processing image: ', img)
+            img, boxes, labels = VD_handler('./Images/' + img)
             # TODO: Call VD_handler to process the image and save path in img variable(Vivek)
             # TODO: Call LPD_handler to process the image and save path in img variable (Nawal)
             # Call LPDDAC_handler to process the image
