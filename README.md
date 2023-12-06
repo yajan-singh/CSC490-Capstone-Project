@@ -1,9 +1,9 @@
 # CSC409-Capstone-Project
-Licence plate detection
+Licence plate detection and classification
 
 Group: Pixel Pioneers
 
-Requirements Installation: To set up the environment for this project, please install Detecto by running the following command in your terminal:
+Installation Requirements: To set up the environment for this project, please install Detecto by running the following command in your terminal:
 pip3 install detecto
 
 Running the Code:
