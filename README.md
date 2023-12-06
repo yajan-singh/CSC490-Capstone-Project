@@ -13,10 +13,10 @@ While the code is running it will go through each model and the outputted croppe
 
 To train models on your own dataset: 
 
-Licence Plate Detection/Licence Plate Digit Detection and Classficiation
+Licence Plate Detection/Licence Plate Digit Detection and Classficiation:
 
-To do this you may edit the PATH in the TrainingConfig.json file to lead to whatever dataset you choose and you can run train.py in the folder of whatever model you wish to train. In the dataset folder it should have a folder for images which should contain .jpg/.png files and a folder for annotation that contain .xml files. Each corresponding annotation xml file should have the same file name as the image that it annotates.
+To do this you may edit the PATH in the TrainingConfig.json file to lead to whatever dataset you choose and you can run train.py in the folder of whatever model you wish to train. The dataset folder should have a folder called "images" which should contain .jpg/.png files and a folder called "annotations" that contain .xml files for the annotations. Each annotation xml file should have the same file name as its corresponding image that it annotates.
 
-Vehicle Detection
+Vehicle Detection:
 
-The dataset should have a train and test folder with .jpg/.png and with the same file name a .xml that contains the annotations
+The dataset should have a train and test folder with .jpg/.png and with the same file name as the .xml that contains the annotations
