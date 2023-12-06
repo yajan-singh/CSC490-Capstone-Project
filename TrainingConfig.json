@@ -3,7 +3,7 @@
         "PATH": "./dataset"
     },
     "LPD": {
-        "PATH": "/Users/nawal/Documents/CSC490/ExampleDataset"
+        "PATH": "./dataset"
     },
     "VD": {
         "PATH": "./dataset"
