@@ -1,5 +1,6 @@
 # CSC409-Capstone-Project
 Licence plate detection
+
 Group: Pixel Pioneers
 
 Requirements Installation: To set up the environment for this project, please install Detecto by running the following command in your terminal:
